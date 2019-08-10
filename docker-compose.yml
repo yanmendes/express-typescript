@@ -1,0 +1,18 @@
+version: "3"
+services:
+  siplao:
+    container_name: siplao
+    build: .
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - "3050:3050"
+
+  postgres:
+    container_name: postgres-siplao
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: siplao
